@@ -10,7 +10,7 @@ export const AdminDashboardPage = () => {
           <h2 className="text-2xl font-bold">Manage Products</h2>
           <p>View, add, edit, and delete products.</p>
         </Link>
-        {/* We can add Orders later */}
+        {/*  */}
       </div>
     </div>
   );
