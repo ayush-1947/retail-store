@@ -6,17 +6,16 @@ import Product from "../models/product.model.js";
 // @access Private (Customer)
 export const addToCart = async (req, res) => {
   const { productId, quantity } = req.body;
-  const userId = req.user._id; // from protectUser middleware
-
+  const userId = req.user._id;
   try {
     const product = await Product.findById(productId);
 
-    // Check product validity
+    
     if (!product || product.status !== "Active") {
       return res.status(400).json({ message: "Invalid product" });
     }
 
-    // Check stock
+    
     if (quantity > product.stock) {
       return res.status(400).json({ message: "Insufficient stock" });
     }
@@ -31,14 +30,14 @@ export const addToCart = async (req, res) => {
     );
 
     if (itemIndex > -1) {
-      // Product exists in cart, update quantity
+      
       let newQuantity = cart.items[itemIndex].quantity + quantity;
       if (newQuantity > product.stock) {
          return res.status(400).json({ message: "Insufficient stock" });
       }
       cart.items[itemIndex].quantity = newQuantity;
     } else {
-      // Product not in cart, add new item
+      
       cart.items.push({ product: productId, quantity });
     }
 
@@ -51,7 +50,6 @@ export const addToCart = async (req, res) => {
 
 
 
-// --- ▼ ADD THESE NEW FUNCTIONS ▼ ---
 
 // @desc    Get user's cart
 // @route   GET /api/cart
@@ -64,7 +62,7 @@ export const getCart = async (req, res) => {
     );
 
     if (!cart) {
-      // If no cart, return an empty one
+      
       return res.json({
         user: req.user._id,
         items: [],
@@ -110,7 +108,7 @@ export const updateCartItem = async (req, res) => {
     cart.items[itemIndex].quantity = quantity;
     await cart.save();
 
-    // Populate product details before sending back
+    
     await cart.populate("items.product", "name price imageUrl stock");
     res.json(cart);
   } catch (error) {
@@ -134,14 +132,14 @@ export const removeCartItem = async (req, res) => {
       return res.status(404).json({ message: "Cart not found" });
     }
 
-    // Filter out the item to be removed
+    
     cart.items = cart.items.filter(
       (item) => item.product.toString() !== productId
     );
 
     await cart.save();
     
-    // Populate product details before sending back
+    
    await cart.populate("items.product", "name price imageUrl stock");
     res.json(cart);
   } catch (error) {
@@ -152,4 +150,3 @@ export const removeCartItem = async (req, res) => {
 };
 
 
-// You'll also want GET, PUT (update qty), and DELETE (remove item) routes here
