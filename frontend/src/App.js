@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-// --- Customer Components ---
+
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
@@ -12,8 +12,7 @@ import CheckoutPage from './pages/CheckoutPage';
 import OrderHistoryPage from './pages/OrderHistoryPage';
 import { CartProvider } from './context/CartContext';
 
-// --- Admin Components ---
-import AdminLoginPage from './pages/AdminLoginPage';  // NO curly braces (default export)
+import AdminLoginPage from './pages/AdminLoginPage';  
 import { AdminLayout } from './admin/AdminLayout';
 import { AdminProtectedRoute } from './admin/AdminProtectedRoute';
 import { AdminDashboardPage } from './admin/pages/AdminDashboardPage';
@@ -39,7 +38,7 @@ console.log({
 
   return (
     <Routes>
-      {/* --- Customer Routes --- */}
+      {/*  */}
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="product/:id" element={<ProductDetailPage />} />
@@ -51,7 +50,7 @@ console.log({
 
       </Route>
 
-      {/* 1. Admin Login (NO Layout) */}
+      {/*  */}
       <Route path="/admin" element={<AdminProtectedRoute />}>
   <Route element={<AdminLayout />}>
     <Route path="dashboard" element={<AdminDashboardPage />} />
