@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const CheckoutPage = () => {
-  // 1. Get clearCart from the context
+
   const { cartItems, loading, clearCart } = useCart();
   const navigate = useNavigate();
   
-  // Get user info from localStorage to pre-fill the form
+  
   const { name = '', email = '' } = JSON.parse(localStorage.getItem('userInfo')) || {};
 
-  // Form state
+
   const [formData, setFormData] = useState({
     customerName: name,
     email: email,
@@ -23,7 +23,7 @@ const CheckoutPage = () => {
   });
   const [error, setError] = useState('');
 
-  // Calculate totals
+  
   const subtotal = cartItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
   const tax = subtotal * 0.10;
   const total = subtotal + tax;
@@ -34,15 +34,15 @@ const CheckoutPage = () => {
 
   const placeOrderHandler = async (e) => {
     e.preventDefault();
-    setError(''); // Clear previous errors
+    setError(''); 
 
     try {
       const { customerName, email, contactNumber, address, city, postalCode, country } = formData;
       
-      // Get auth token
+    
       const { token } = JSON.parse(localStorage.getItem('userInfo'));
 
-      // Make API call
+
       const { data } = await axios.post(
         'http://localhost:5000/api/orders',
         {
@@ -54,10 +54,10 @@ const CheckoutPage = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // If successful:
+   
       alert('Order placed successfully!');
       
-      // 2. Clear the cart and navigate home (no reload)
+     
       clearCart();
       navigate('/');
       
@@ -68,14 +68,14 @@ const CheckoutPage = () => {
   
   if (loading) return <div>Loading...</div>
   if (cartItems.length === 0 && !loading) {
-     navigate('/'); // Redirect to home if cart is empty
+     navigate('/'); 
      return null;
   }
 
   return (
     <div className="max-w-6xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
       
-      {/* Left Side: Shipping Form */}
+      {/*  */}
       <div className="md:col-span-2">
         <h1 className="text-2xl font-bold mb-6">Shipping Details</h1>
         <form onSubmit={placeOrderHandler} className="space-y-4 bg-white p-6 shadow-md rounded-lg">
@@ -100,7 +100,7 @@ const CheckoutPage = () => {
         </form>
       </div>
 
-      {/* Right Side: Order Summary */}
+      {/* */}
       <div className="md:col-span-1">
         <div className="bg-gray-100 p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold mb-4">Order Summary</h2>
