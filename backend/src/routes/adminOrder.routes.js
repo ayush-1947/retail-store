@@ -8,7 +8,7 @@ import { protectAdmin } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
-// Protect all these routes with admin auth
+
 router.use(protectAdmin);
 
 router.route("/").get(getAllOrders);
