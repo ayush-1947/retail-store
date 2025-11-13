@@ -6,7 +6,7 @@ import Product from "../models/product.model.js";
 // @access  Private (Admin)
 export const getDashboardStats = async (req, res) => {
   try {
-    // 1. Get stats for "Today"
+   
     const today = new Date();
     const startOfToday = new Date(today.setHours(0, 0, 0, 0));
     const endOfToday = new Date(today.setHours(23, 59, 59, 999));
@@ -20,7 +20,7 @@ export const getDashboardStats = async (req, res) => {
       0
     );
 
-    // 2. Get overall stats
+    
     const totalOrders = await Order.countDocuments();
     const allOrders = await Order.find({});
     const totalRevenue = allOrders.reduce(
@@ -28,9 +28,9 @@ export const getDashboardStats = async (req, res) => {
       0
     );
 
-    // 3. Get low stock items
+   
     const lowStockItems = await Product.find({
-      stock: { $lte: 10 }, // Or any threshold you want
+      stock: { $lte: 10 }, 
       status: "Active",
     }).select("name stock");
 
