@@ -18,12 +18,12 @@ const RegisterPage = () => {
         password,
       });
 
-      // Save the token and user info to LocalStorage
+      
       localStorage.setItem('userInfo', JSON.stringify(data));
       
-      // Redirect to home page
+    
       navigate('/');
-      window.location.reload(); // Refresh to update header state
+      window.location.reload(); 
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
     }
