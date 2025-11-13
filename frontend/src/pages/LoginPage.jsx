@@ -16,12 +16,12 @@ const LoginPage = () => {
         password,
       });
 
-      // Save token to LocalStorage
+    
       localStorage.setItem('userInfo', JSON.stringify(data));
 
-      // Redirect to home page
+   
       navigate('/');
-      window.location.reload(); // Refresh to update header
+      window.location.reload(); 
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid email or password');
     }
