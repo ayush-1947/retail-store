@@ -1,7 +1,7 @@
 import express from "express";
 import {
   placeOrder,
-  getMyOrders // <-- Add this
+  getMyOrders 
 } from "../controllers/order.controller.js";
 import { protectUser } from "../middleware/auth.middleware.js";
 
