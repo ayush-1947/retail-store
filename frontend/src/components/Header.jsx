@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext'; // 1. Import useCart
+import { useCart } from '../context/CartContext'; 
 
 const Header = () => {
   const navigate = useNavigate();
-  const { cartItems } = useCart(); // 2. Get cartItems from context
+  const { cartItems } = useCart(); 
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-  // Calculate total number of items
+
   const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const logoutHandler = () => {
     localStorage.removeItem('userInfo');
-    // Reload page to clear all state
+ 
     window.location.href = '/login';
   };
 
@@ -24,7 +24,7 @@ const Header = () => {
         </Link>
         
         <div className="flex items-center space-x-6">
-          {/* 🛒 Cart Icon with Dynamic Count */}
+          {/*  Cart Icon with Dynamic Count */}
           <Link to="/cart" className="relative">
             <span className="text-2xl">🛒</span>
             <span className="absolute -top-2 -right-2 bg-red-500 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
