@@ -7,7 +7,7 @@ const Layout = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow container mx-auto p-4">
-        <Outlet /> {/* Child pages (like HomePage) will render here */}
+        <Outlet /> {/*  */}
       </main>
       <footer className="bg-gray-200 text-center p-4">
         © {new Date().getFullYear()} AXS Solution. All rights reserved.
