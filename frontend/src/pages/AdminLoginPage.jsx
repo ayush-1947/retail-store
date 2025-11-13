@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const AdminLoginPage = () => {
-  // We pre-fill these for easy testing
+ 
   const [email, setEmail] = useState('admin1@example.com');
   const [password, setPassword] = useState('password121');
   const [error, setError] = useState('');
@@ -11,19 +11,18 @@ const AdminLoginPage = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    setError(''); // Clear previous errors
-    
+    setError(''); 
     try {
-      // 1. Call the admin-specific login endpoint
+      
       const { data } = await axios.post('http://localhost:5000/api/admin/login', {
         email,
         password,
       });
 
-      // 2. Save admin token to localStorage (using a different name!)
+      
       localStorage.setItem('adminInfo', JSON.stringify(data));
 
-      // 3. Redirect to the admin dashboard (which we'll create next)
+     
       navigate('/admin/dashboard');
 
     } catch (err) {
@@ -32,7 +31,7 @@ const AdminLoginPage = () => {
   };
 
   return (
-    // This is a full-screen page, not part of the customer layout
+    
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="max-w-md w-full mx-auto p-8 border rounded-lg shadow-lg bg-white">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
