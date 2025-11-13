@@ -6,18 +6,18 @@ const CartPage = () => {
   const { cartItems, updateCartItem, removeCartItem, loading } = useCart();
   const navigate = useNavigate();
 
-  // Calculate Subtotal
+ 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.product.price * item.quantity,
     0
   );
 
-  // Simple hardcoded 10% tax
+ 
   const tax = subtotal * 0.10;
   const total = subtotal + tax;
 
   const checkoutHandler = () => {
-    navigate('/checkout'); // We'll create this page next
+    navigate('/checkout'); 
   };
 
   if (loading) {
@@ -38,7 +38,7 @@ const CartPage = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          {/* Left Side: Cart Items List */}
+          {/* */}
           <div className="md:col-span-2">
             <div className="space-y-4">
               {cartItems.map((item) => (
@@ -56,7 +56,7 @@ const CartPage = () => {
                   </div>
                   
                   <div className="flex items-center space-x-3">
-                    {/* Quantity Selector */}
+                    {/*  */}
                     <select
                       value={item.quantity}
                       onChange={(e) => updateCartItem(item.product._id, Number(e.target.value))}
@@ -67,7 +67,7 @@ const CartPage = () => {
                       ))}
                     </select>
                     
-                    {/* Remove Button */}
+                    {/*  */}
                     <button 
                       onClick={() => removeCartItem(item.product._id)}
                       className="text-red-500 hover:text-red-700 font-medium"
@@ -80,7 +80,7 @@ const CartPage = () => {
             </div>
           </div>
 
-          {/* Right Side: Order Summary */}
+          {/*  */}
           <div className="md:col-span-1">
             <div className="bg-gray-100 p-6 rounded-lg shadow-md">
               <h2 className="text-2xl font-semibold mb-4">Order Summary</h2>
