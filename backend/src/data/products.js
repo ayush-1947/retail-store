@@ -1,0 +1,76 @@
+// Sample data for 8 products.
+// We'll use placeholder images from `picsum.photos` for simplicity.
+export const sampleProducts = [
+  {
+    name: "Classic Leather Wallet",
+    description: "A timeless, minimalist leather wallet with 6 card slots.",
+    price: 59.99,
+    stock: 150,
+    category: "Accessories",
+    status: "Active",
+    imageUrl: "https://picsum.photos/id/24/400/400",
+  },
+  {
+    name: "Modern Smart Watch",
+    description: "Track your fitness and stay connected. 1.4-inch AMOLED display.",
+    price: 249.99,
+    stock: 75,
+    category: "Electronics",
+    status: "Active",
+    imageUrl: "https://picsum.photos/id/180/400/400",
+  },
+  {
+    name: "Insulated Coffee Mug",
+    description: "16oz stainless steel travel mug. Keeps drinks hot for 6 hours.",
+    price: 24.50,
+    stock: 200,
+    category: "Homeware",
+    status: "Active",
+    imageUrl: "https://picsum.photos/id/30/400/400",
+  },
+  {
+    name: "Wireless Noise-Cancelling Headphones",
+    description: "Over-ear headphones with 30-hour battery life and deep bass.",
+    price: 199.99,
+    stock: 60,
+    category: "Electronics",
+    status: "Active",
+    imageUrl: "https://picsum.photos/id/119/400/400",
+  },
+  {
+    name: "Running Shoes",
+    description: "Lightweight mesh running shoes with responsive foam cushioning.",
+    price: 120.00,
+    stock: 120,
+    category: "Apparel",
+    status: "Active",
+    imageUrl: "https://picsum.photos/id/146/400/400",
+  },
+  {
+    name: "French Press Coffee Maker",
+    description: "34oz capacity, durable borosilicate glass. Makes 8 cups.",
+    price: 39.99,
+    stock: 90,
+    category: "Homeware",
+    status: "Active",
+    imageUrl: "https://picsum.photos/id/312/400/400",
+  },
+  {
+    name: "Vintage T-Shirt",
+    description: "A soft, 100% cotton t-shirt with a vintage-inspired logo.",
+    price: 29.99,
+    stock: 0, // Intentionally out of stock
+    category: "Apparel",
+    status: "Active",
+    imageUrl: "https://picsum.photos/id/40/400/400",
+  },
+  {
+    name: "Developer Laptop",
+    description: "A powerful laptop for all your coding needs. (For testing)",
+    price: 1499.00,
+    stock: 20,
+    category: "Electronics",
+    status: "Inactive", // Intentionally Inactive
+    imageUrl: "https://picsum.photos/id/2/400/400",
+  },
+];

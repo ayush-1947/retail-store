@@ -1,0 +1,61 @@
+import User from "../models/user.model.js";
+import generateToken from "../utils/generateToken.js";
+
+// @desc    Register a new customer
+// @route   POST /api/auth/register
+// @access  Public
+export const registerUser = async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    const userExists = await User.findOne({ email });
+
+    if (userExists) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const user = await User.create({
+      name,
+      email,
+      password, // Password will be hashed by the 'pre-save' hook in your model
+    });
+
+    if (user) {
+      res.status(201).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        token: generateToken(res, user._id),
+      });
+    } else {
+      res.status(400).json({ message: "Invalid user data" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+// @desc    Auth user (login) & get token
+// @route   POST /api/auth/login
+// @access  Public
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    // Check if user exists AND if password matches
+    if (user && (await user.matchPassword(password))) {
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        token: generateToken(res, user._id), // Send token back
+      });
+    } else {
+      res.status(401).json({ message: "Invalid email or password" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
