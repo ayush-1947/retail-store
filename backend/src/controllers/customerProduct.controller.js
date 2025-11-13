@@ -21,7 +21,7 @@ export const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     
-    // Also check if it's active
+    
     if (!product || product.status !== "Active") {
       return res.status(404).json({ message: "Product not found" });
     }
