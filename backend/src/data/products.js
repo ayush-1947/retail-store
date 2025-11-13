@@ -1,5 +1,4 @@
-// Sample data for 8 products.
-// We'll use placeholder images from `picsum.photos` for simplicity.
+
 export const sampleProducts = [
   {
     name: "Classic Leather Wallet",
@@ -59,7 +58,7 @@ export const sampleProducts = [
     name: "Vintage T-Shirt",
     description: "A soft, 100% cotton t-shirt with a vintage-inspired logo.",
     price: 29.99,
-    stock: 0, // Intentionally out of stock
+    stock: 0,
     category: "Apparel",
     status: "Active",
     imageUrl: "https://picsum.photos/id/40/400/400",
@@ -70,7 +69,7 @@ export const sampleProducts = [
     price: 1499.00,
     stock: 20,
     category: "Electronics",
-    status: "Inactive", // Intentionally Inactive
+    status: "Inactive", 
     imageUrl: "https://picsum.photos/id/2/400/400",
   },
 ];
