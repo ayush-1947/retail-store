@@ -1,18 +1,18 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-// 1. Create the Context
+
 const CartContext = createContext();
 
-// 2. Create the Provider (a component that wraps our app)
+
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Get user info (and token) from localStorage
+  
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-  // --- Helper Function: Get Auth Headers ---
+
   const getAuthHeaders = () => {
     if (userInfo && userInfo.token) {
       return {
@@ -24,12 +24,12 @@ export const CartProvider = ({ children }) => {
     return {};
   };
 
-  // --- Effect: Fetch Cart on Load ---
+
   useEffect(() => {
     const fetchCart = async () => {
       if (!userInfo) {
         setLoading(false);
-        return; // Don't fetch if no user
+        return; 
       }
       try {
         const { data } = await axios.get('http://localhost:5000/api/cart', getAuthHeaders());
@@ -41,10 +41,10 @@ export const CartProvider = ({ children }) => {
       }
     };
     fetchCart();
-  }, [userInfo?.token]); // Re-run if token changes (login/logout)
+  }, [userInfo?.token]); 
 
 
-  // --- Function: Add to Cart ---
+
   const addToCart = async (productId, quantity) => {
     if (!userInfo) {
       console.error('You must be logged in to add to cart');
@@ -58,16 +58,16 @@ export const CartProvider = ({ children }) => {
         getAuthHeaders()
       );
       setCartItems(data.items);
-      alert('Item added to cart!'); // Simple user feedback
+      alert('Item added to cart!'); 
     } catch (error) {
       console.error('Failed to add to cart', error);
       alert('Failed to add item. See console.');
     }
   };
 
-  // --- Function: Update Cart Item ---
+
   const updateCartItem = async (productId, quantity) => {
-    if (quantity <= 0) return; // Prevent 0 or negative
+    if (quantity <= 0) return; 
     try {
       const { data } = await axios.put(
         'http://localhost:5000/api/cart',
@@ -80,7 +80,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // --- Function: Remove From Cart ---
+
   const removeCartItem = async (productId) => {
     try {
       const { data } = await axios.delete(
@@ -97,7 +97,7 @@ export const CartProvider = ({ children }) => {
   setCartItems([]);
 };
 
-  // --- Provide all values to the app ---
+
   return (
     <CartContext.Provider 
       value={{ 
@@ -112,9 +112,9 @@ export const CartProvider = ({ children }) => {
       {children}
     </CartContext.Provider> // <-- Corrected the typo here
   );
-}; // <-- This is the only closing brace for CartProvider
+};
 
-// 3. Create a custom hook to easily use the context
+
 export const useCart = () => {
   return useContext(CartContext);
 };
