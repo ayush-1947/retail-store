@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // We'll use this to link to the product page
+import { Link } from 'react-router-dom'; 
 
 const ProductCard = ({ product }) => {
   return (
