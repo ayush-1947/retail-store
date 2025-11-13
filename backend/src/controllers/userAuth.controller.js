@@ -17,7 +17,7 @@ export const registerUser = async (req, res) => {
     const user = await User.create({
       name,
       email,
-      password, // Password will be hashed by the 'pre-save' hook in your model
+      password, 
     });
 
     if (user) {
@@ -44,13 +44,13 @@ export const loginUser = async (req, res) => {
   try {
     const user = await User.findOne({ email });
 
-    // Check if user exists AND if password matches
+    
     if (user && (await user.matchPassword(password))) {
       res.json({
         _id: user._id,
         name: user.name,
         email: user.email,
-        token: generateToken(res, user._id), // Send token back
+        token: generateToken(res, user._id),
       });
     } else {
       res.status(401).json({ message: "Invalid email or password" });
