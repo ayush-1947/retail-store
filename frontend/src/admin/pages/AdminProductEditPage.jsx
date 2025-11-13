@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 
-export const AdminProductEditPage = () => {  // Changed from 'export default' to 'export const'
+export const AdminProductEditPage = () => {  
   const { id } = useParams();
   const navigate = useNavigate();
   const isEditMode = !!id;
