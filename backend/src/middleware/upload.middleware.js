@@ -1,7 +1,7 @@
 import multer from "multer";
 import path from "path";
 
-// Set storage
+
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     cb(null, "uploads/");
@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
   },
 });
 
-// File filter
+
 function checkFileType(file, cb) {
   const filetypes = /jpg|jpeg|png/;
   const extname = filetypes.test(
@@ -28,7 +28,7 @@ function checkFileType(file, cb) {
 
 export const upload = multer({
   storage,
-  limits: { fileSize: 2 * 1024 * 1024 }, // 2 MB
+  limits: { fileSize: 2 * 1024 * 1024 },
   fileFilter: function (req, file, cb) {
     checkFileType(file, cb);
   },
