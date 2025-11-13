@@ -6,7 +6,7 @@ import Product from "../models/product.model.js";
 // @route   POST /api/orders
 // @access  Private (Customer)
 export const placeOrder = async (req, res) => {
-  // 1. Get shipping info from the request body
+ 
   const { 
     customerName, 
     email, 
@@ -26,9 +26,9 @@ export const placeOrder = async (req, res) => {
     let orderItems = [];
     let total = 0;
 
-    // 2. Loop through items (this logic is the same)
+    
     for (const item of cart.items) {
-      const product = item.product; // This is the populated product document
+      const product = item.product; 
 
       if (item.quantity > product.stock) {
         return res.status(400).json({
@@ -36,11 +36,11 @@ export const placeOrder = async (req, res) => {
         });
       }
 
-      // Subtract stock
+      
       product.stock -= item.quantity;
       await product.save();
 
-      // Add to order items
+      
       orderItems.push({
         product: {
           _id: product._id,
@@ -51,18 +51,18 @@ export const placeOrder = async (req, res) => {
         quantity: item.quantity,
       });
 
-      // Calculate total
+      
       total += product.price * item.quantity;
     }
 
-    // 3. Create the new order WITH the shipping details
+    
     const order = new Order({
       user: req.user._id,
       items: orderItems,
       total: total,
       status: "pending",
       
-      // Add the new fields
+      
       customerName,
       email,
       contactNumber,
@@ -71,7 +71,7 @@ export const placeOrder = async (req, res) => {
 
     const createdOrder = await order.save();
 
-    // 4. Empty cart (same as before)
+   
     cart.items = [];
     await cart.save();
 
