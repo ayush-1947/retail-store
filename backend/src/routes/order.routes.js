@@ -10,7 +10,6 @@ const router = express.Router();
 
 router.route("/").post(protectUser, placeOrder);
 
-// This line will now work
 router.route("/myorders").get(protectUser, getMyOrders);
 
 export default router;
