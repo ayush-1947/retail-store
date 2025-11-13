@@ -8,7 +8,7 @@ const orderSchema = new mongoose.Schema({
   },
   items: [
     {
-      product: { type: Object, required: true }, // Store a snapshot of the product
+      product: { type: Object, required: true }, 
       quantity: { type: Number, required: true },
     },
   ],
